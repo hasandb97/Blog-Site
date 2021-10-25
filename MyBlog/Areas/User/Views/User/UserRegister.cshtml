@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "UserRegister";
+    Layout = "~/Views/Shared/_LayoutHeadFoot.cshtml";
+}
+
+<div class="container" style="margin-top:10px;">
+
+    <h4 style="color:red;text-align:center;font-weight:bold;margin-bottom:50px;">@ViewBag.NotValidPass</h4>
+    <h4 style="color:red;text-align:center;font-weight:bold;margin-bottom:50px;">@ViewBag.NotValidPhone</h4>
+
+
+    @using (Html.BeginForm("UserRegister", "User", FormMethod.Post, new { @class = "Frm" }))
+    {
+
+        <h2 style="text-align:center;color:#05123f;font-weight:bold;"> فرم ثبت کابر جدید</h2><br />
+
+        <p style="color:black">لطفا اطلاعات خود را با دقت وارد نمایید</p>
+        <!--FullName-->
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="FullName" class="form-control" name="FullName" placeholder="نام و نام خانوادگی" required />
+        </div>
+
+        <!--Username-->
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Uname" class="form-control" name="Uname" placeholder="نام کاربری" required />
+        </div>
+
+        <!--PhoneNumber-->
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="شماره تلفن همراه" required />
+        </div>
+
+        <!--Email-->
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Email" class="form-control" name="Email" placeholder="ایمیل" required />
+        </div>
+
+        <!--Password-->
+        <div class="form-group">
+            <input type="password" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Password" class="form-control" name="Password" placeholder="کلمه عبور" required /><br />
+            <button class="btn btn-danger">تایید</button>
+            @Html.ActionLink("قبلا ثبت نام کرده اید؟", "UserLogin", new { Controller = "User" }, new { @class = "message-alert" })
+        </div>
+    }
+
+
+</div>
+

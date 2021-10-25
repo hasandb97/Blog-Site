@@ -1,0 +1,60 @@
+﻿@model MyBlog.Models.TBL_Posts
+@{
+    ViewBag.Title = "ShowPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    @using System.Globalization;
+
+
+<div class="col-lg-8  posts-list">
+    <div class="col-lg-12 col-md-12 col-sm-12 posts-detail">
+        <h2 style="color:orangered;">
+            @ViewBag.Message
+        </h2>
+
+        <div class="posts-detail-texts">
+            <h3 style="margin-top:50px;">@Model.Post_Title</h3>
+            <p style="font-weight:bold;">@Model.Post_Summery</p>
+
+        </div>
+
+        <div class="img-posts">
+            <img src="/PageImages/@Model.Post_Image" height="100" width="100">
+        </div>
+        <div class="posts-detail-texts">
+
+            <i class="fa fa-calendar"></i>
+            <p class="f-awesome-posts-detail" style="direction:ltr">@ViewBag.Persian</p>
+            <i class="fa fa-user"></i>
+            <p class="f-awesome-posts-detail">@Model.TBL_Admin.Admin_FullName</p>
+            <i class="fa fa-book"></i>
+            <p class="f-awesome-posts-detail">دسته :@Model.TBL_Categories.Category_Name</p>
+
+            <hr />
+
+            <div class="post-text-content">
+                @Html.Raw(Model.Post_Text)
+            </div>
+
+        </div>
+    </div>
+
+
+    <hr class="bg-gray">
+
+
+
+    @if (@Model.Post_CommentStatus == 1)
+    {
+
+        { Html.RenderAction("NComment", "Post", new { id = @Model.Post_ID }); }
+    }
+    else
+    {
+        <h5 style="color:orangered;font-weight:bold;margin-top:50px;margin-bottom:50px;">کامنت ها برای این پست بسته شده اند.</h5>
+    }
+
+
+</div>

@@ -1,0 +1,43 @@
+﻿@model MyBlog.Models.TBL_Users
+@{
+    ViewBag.Title = "ShowUserDetail";
+    Layout = "~/Views/Shared/_LayoutHeadFoot.cshtml";
+}
+
+<div class="container" style="margin-top:10px;">
+
+    
+    <div class="Frm">
+        <h2 style="text-align:center;color:#05123f;font-weight:bold;"> نمایش اطلاعات کاربر</h2><br />
+
+        <p>نام و نام خانوادگی : <span>@Model.User_FullName</span></p><br />
+        <p>نام کاربری : <span>@Model.User_UName</span></p><br />
+        <p>شماره تلفن همراه : <span>@Model.User_PhoneNumber</span></p><br />
+        <p>ایمیل : <span>@Model.User_Email</span></p><br />
+        <p>
+            وضعیت کاربر :
+            @if (@Model.User_Status == 0)
+            {
+
+                string Str = "در انتظار تایید";
+                <span class="alert-danger">@Str</span>
+            }
+            else if (@Model.User_Status == 1)
+            {
+                string Str = "فعال";
+                <span style="color:forestgreen">@Str</span>
+            }
+
+        </p><br /><br />
+
+        @Html.ActionLink("تایید عضویت", "PublisheUser", "Admin", new { id = Model.User_ID }, new { @class = "btn alert-success" })
+        @Html.ActionLink("تعویق عضویت", "UnPublishUser", "Admin", new { id = Model.User_ID }, new { @class = "btn alert-danger" })
+        @Html.ActionLink("بازگشت به مدیریت  همه کاربران", "ShowAllUsers", "Admin", new { @class = "btn alert-info" })
+
+
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,37 @@
+﻿@model PagedList.IPagedList<MyBlog.Models.TBL_Posts>
+@{
+    ViewBag.Title = "بلاگ";
+
+}
+@using PagedList.Mvc
+
+
+
+<div class="col-lg-8  posts-list">
+    @foreach (var test in Model)
+    {
+        <div class="col-lg-5 col-md-5 col-sm-12 posts-detail">
+            <div class="img-posts">
+                <img src="/PageImages/@test.Post_Image" height="100" width="100">
+            </div>
+            <div class="posts-detail-texts">
+
+                <h3>@test.Post_Title</h3>
+
+                <i class="fa fa-calendar"></i>
+                <p class="f-awesome-posts-detail">6 مرداد 1400</p>
+                <i class="fa fa-user"></i>
+                <p class="f-awesome-posts-detail">6 مرداد 1400</p>
+                <p class="pre-text-posts-detail">
+                    @test.Post_Summery
+                </p><br />
+                @Html.ActionLink("ادامه مطلب", "ShowPost", "Post/Post", new { id = @test.Post_ID }, new { @class = "btn alert-success continue-reading-btn" })
+
+            </div>
+        </div>
+    }
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+
+
+</div>

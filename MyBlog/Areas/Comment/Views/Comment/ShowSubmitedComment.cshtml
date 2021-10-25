@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<MyBlog.Models.TBL_Comments>
+@{
+    ViewBag.Title = "SubmitComments";
+    Layout = "~/Views/Shared/_LayoutHeadFoot.cshtml";
+}
+@using PagedList.Mvc
+
+<div class="container" style="margin-top:50px;">
+    <h3 style="text-align:center;font-weight:bold;margin-bottom:50px;">مدیریت نظرات تایید شده کاربران</h3>
+
+
+    <table class="table table-striped" stye="margin-top:150px;">
+        <thead>
+            <tr>
+                <th scope="col">نویسنده</th>
+                <th scope="col">متن</th>
+                <th scope="col">تاریخ ثبت</th>
+                <th scope="col"> وضعیت انتشار</th>
+
+                <th scope="col">حذف</th>
+                <th scope="col">انتشار</th>
+            </tr>
+        </thead>
+        @foreach (var test in Model)
+        {
+            <tbody>
+                <tr>
+
+                    <td style="font-weight:bold;">@test.TBL_Users.User_UName</td>
+                    <td style="text-align:justify;">@test.Comment_Text</td>
+
+                    <td>@test.Comment_Date</td>
+                    @if (@test.Comment_Status == 0)
+                    {
+                        string Stat = "در حال بررسی";
+                        <td style="font-weight:bold;">@Stat</td>
+                    }
+                    else if (@test.Comment_Status == 1)
+                    {
+                        string Stat = "منتشر شده";
+                        <td style="font-weight:bold;">@Stat</td>
+                    }
+                    <td>@Html.ActionLink("حذف", "Delete", "Comment", new { id = @test.Comment_ID }, new { @class = "btn alert-danger" })</td>
+                    <td>@Html.ActionLink("جلوگیری از انتشار", "UnPublishComment", "Comment", new { id = @test.Comment_ID }, new { @class = "btn alert-success" })</td>
+                </tr>
+
+            </tbody>
+        }
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("ShowSubmitedComment", new { page, pageSize = Model.PageSize }))
+
+</div>
+

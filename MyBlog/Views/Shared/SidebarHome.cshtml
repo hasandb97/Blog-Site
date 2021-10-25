@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MyBlog.Models.TBL_Posts>
+
+    <div class="col-lg-4  sidebar-blog">
+        <div class="col-lg-12 col-md-12 col-sm-12 sidebar-blog-bg">
+            <div class="sidebar-search bg-white">
+                <form class="form-sidebar-search">
+                    <input type="text" placeholder="جستجو">
+                    <button class="btn"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="sidebar-posts-lists" style="margin-top: 50px;">
+                <div class="col-lg-12 col-md-11 col-sm-12 bg-white"
+                     style="margin: 0 auto;margin-top: 50px;padding: 30px 0;">
+                    <div class="posts-widgets-bg">
+
+                        <div class="last-posts-title">
+                            <h4 style="color:black;">آخرین پست ها</h4>
+                        </div>
+
+                        @foreach (var test in Model)
+                        {
+                            <a href="~/Post/Post/ShowPost/@test.Post_ID">
+                                <div class="recent-post-widget side-bar-recent-post">
+                                    <div class="recent-post-footer-txt">
+                                        <h6 class="txt-color-black">@test.Post_Title</h6>
+                                        <p class="txt-color-black-p">
+                                            @test.Post_Summery
+                                        </p>
+                                    </div>
+                                    <div class="img-rdecent-post-widget">
+                                        <img class="img-companies" src="/PageImages/@test.Post_Thumbnail" width="100"
+                                             height="100" alt="پست ها">
+                                    </div>
+                                </div>
+                            </a>
+                        }
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="sidebar-categories bg-white">
+                <div class="col-lg-12 col-md-12 col-sm-12  sidebar-categories-bg">
+                    <div class="last-posts-title">
+                        <h4 style="color:black;padding-top:10px;">دسته بندی ها</h4>
+                    </div>
+                    <ul>
+
+                        @Html.Raw(@ViewBag.Mycat)
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </div>

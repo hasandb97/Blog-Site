@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MyBlog.Models.TBL_Categories>
+@{
+    ViewBag.Title = "NewPost";
+    Layout = "~/Views/Shared/_LayoutHeadFoot.cshtml";
+}
+
+<div class="container" style="margin-top:10px;">
+
+    @using (Html.BeginForm("NewPost", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="Frm">
+        <h2 style="text-align:center;color:#05123f;font-weight:bold;"> پست جدید</h2><br />
+
+        <p style="color:black">لطفا فیلدهای مربوطه را با اطلاعات مناسب پر کنید.</p>
+
+        <!--Title-->
+        <div class="form-group">
+            <label>عنوان پست</label>
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Title" class="form-control" name="Title" placeholder="عنوان" required />
+        </div><hr /><br />
+
+
+        <div class="form-group">
+            <label>تصویر شاخص</label>
+            <input type="file" name="Fileup" id="Fileup" required />
+        </div><br />
+
+
+        <!--Category-->
+        <div class="form-group">
+            <label>دسته بندی</label>
+            <select id="Category" name="Category" style="width:200px;display:block;margin-top:10px;">
+                @foreach (var test in Model)
+                {
+                    <option value="@test.Category_ID">@test.Category_Name</option>
+                }
+            </select>
+        </div><hr /><br />
+
+        <!--Summery-->
+        <div class="form-group">
+            <label>خلاصه متن</label>
+            <textarea rows="4" type="text" style="max-width:100% !important;resize:none;margin:0 auto;margin-top:20px;" id="Summery" class="form-control" name="Summery" required></textarea>
+        </div><hr /><br />
+
+        <!--Text-->
+        <div class="form-group">
+            <label>متن</label>
+            <textarea id="mytextarea" name="mytextarea"></textarea>
+        </div><hr /><br />
+
+
+        <div class="form-group">
+            <button class="btn btn-danger">تایید</button>
+
+        </div>
+    </div>
+    }
+
+
+</div>
+
+
+@section scripts
+{
+    <script src="~/Content/jquery-1.10.2.min.js"></script>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#mytextarea').ckeditor();
+        });
+    </script>
+}

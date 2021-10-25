@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "UserLogin";
+    Layout = "~/Views/Shared/_LayoutHeadFoot.cshtml";
+}
+
+<div class="container" style="margin-top:10px;">
+    
+    @using (Html.BeginForm("UserLogin", "User", FormMethod.Post, new { @class = "Frm" }))
+    {
+        
+    <h4 style="color:green;text-align:center;font-weight:bold;">@ViewBag.RegisterSuccessed</h4>
+    <h4 style="color:orangered;text-align:center;font-weight:bold;">@ViewBag.LoginFailed</h4>
+        <h2 style="text-align:center;color:#05123f;font-weight:bold;"> فرم ورود کابر</h2><br />
+
+        <p style="color:black">لطفا اطلاعات خود را با دقت وارد نمایید</p>
+
+        <!--Email-->
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Email" class="form-control" name="Email" placeholder="ایمیل" required />
+        </div>
+
+        <!--Password-->
+        <div class="form-group">
+            <input type="password" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Password" class="form-control" name="Password" placeholder="کلمه عبور" required /><br />
+            <button class="btn btn-danger">تایید</button>
+            @Html.ActionLink("حساب کاربری ندارید؟" , "UserRegister",new { Controller="User"} , new { @class = "message-alert"})
+        </div>
+    }
+
+
+</div>
+

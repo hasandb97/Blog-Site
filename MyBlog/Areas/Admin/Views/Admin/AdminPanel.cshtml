@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "AdminPanel";
+    Layout = "~/Views/Shared/_LayoutHeadFoot.cshtml";
+}
+
+<div class="container" style="margin:0 auto;margin-top:50px;text-align:center;margin-bottom:100px;">
+    <h4 style="font-weight:bold;color:black;">به پنل مدیریت خوش آمدید </h4><br />
+    @Html.ActionLink("خروج از حساب", "AdminLogout", "Admin", new { Area = "Admin" }, new { @class = "btn alert-danger" })<br /><br />
+
+    <p style="text-align:right;color:black;font-size:17px;">با سلام . لطفا بخش مورد نظر خود را از بین گزینه ها انتخاب کنید.</p><br />
+    @Html.ActionLink("لیست همه کاربران", "ShowAllUsers", "Admin", new { Area = "Admin" }, new { @class = "btn alert-info" })
+    @Html.ActionLink("لیست کاربران تایید شده", "ShowSubmitedUser", "Admin", new { Area = "Admin" }, new { @class = "btn alert-info" })
+    @Html.ActionLink("لیست کاربران در انتظار تایید", "UserToSbumit", "Admin", new { Area = "Admin" }, new { @class = "btn alert-info" })
+    <br /><br />
+    @Html.ActionLink("لیست همه ی پست ها", "ShowAllPostList", "Post", new { Area = "Post" }, new { @class = "btn btn-info" })
+    @Html.ActionLink("لیست پست های منتشر شده", "ShowPublishedPostList", "Post", new { Area = "Post" }, new { @class = "btn btn-info" })
+    @Html.ActionLink("لیست پست های در انتظار تایید", "ShowUnPublishedPostList", "Post", new { Area = "Post" }, new { @class = "btn btn-info" })
+    @Html.ActionLink("نوشتن پست جدید", "NewPost", "Post", new { Area = "Post" }, new { @class = "btn btn-info" })
+
+    <br /><br />
+    @Html.ActionLink("مدیریت همه نظرات", "ShowAllComments", "Comment", new { Area = "Comment" }, new { @class = "btn alert-success" })
+    @Html.ActionLink("مدیریت نظرات ثبت شده", "ShowSubmitedComment", "Comment", new { Area = "Comment" }, new { @class = "btn alert-success" })
+    @Html.ActionLink("نظرات در انتظار تایید", "ShowCommentToSubmit", "Comment", new { Area = "Comment" }, new { @class = "btn alert-success" })
+</div>
+
